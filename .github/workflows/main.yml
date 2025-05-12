@@ -39,7 +39,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          groups: testers
+          groups: support-qa
           file: build/app/outputs/flutter-apk/app-dev-release.apk
 
       # Upload APK to Firebase (Prod)
@@ -49,5 +49,5 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
-          groups: testers
+          groups: support-qa
           file: build/app/outputs/flutter-apk/app-prod-release.apk
