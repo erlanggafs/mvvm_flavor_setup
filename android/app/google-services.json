@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "200535279539",
+    "project_id": "mvvm-provider-flavor",
+    "storage_bucket": "mvvm-provider-flavor.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200535279539:android:264e71b44a5dfbcc826dc6",
+        "android_client_info": {
+          "package_name": "com.example.mvvm_provider_flavour"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPgBfFOP-fQmZzz4p1pXltCP2VQop0h-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

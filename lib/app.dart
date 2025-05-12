@@ -2,9 +2,9 @@ part of 'widget_parts.dart';
 
 final service = RestClient(
     dio: Dio(BaseOptions(
-      contentType: "application/x-www-form-urlencoded",
-      followRedirects: false,
-    ))
+  contentType: "application/x-www-form-urlencoded",
+  followRedirects: false,
+))
       ..interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
@@ -14,6 +14,9 @@ final service = RestClient(
       )));
 
 Future<Widget> initializeApp(AppConfig appConfig) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   return MyApp();
 }
 

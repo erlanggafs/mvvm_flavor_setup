@@ -1,0 +1,53 @@
+name: Build Flutter App with Flavor
+
+on:
+  push:
+    branches:
+      - Angga
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.6'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # Build APK for Dev
+      - name: Build APK for Dev
+        if: github.ref == 'refs/heads/Angga'
+        run: flutter build apk --flavor dev -t lib/main_dev.dart
+
+      # Build APK for Prod
+      - name: Build APK for Prod
+        if: github.ref == 'refs/heads/main'
+        run: flutter build apk --flavor prod -t lib/main_prod.dart
+
+      # Upload APK to Firebase (Dev)
+      - name: Upload to Firebase (Dev)
+        if: github.ref == 'refs/heads/Angga'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-dev-release.apk
+
+      # Upload APK to Firebase (Prod)
+      - name: Upload to Firebase (Prod)
+        if: github.ref == 'refs/heads/main'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          token: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-prod-release.apk
